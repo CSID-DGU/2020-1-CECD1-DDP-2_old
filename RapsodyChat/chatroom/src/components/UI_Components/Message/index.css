@@ -1,0 +1,24 @@
+.others {
+    text-align: left;
+}
+
+.me {
+    text-align: right;
+}
+
+.Member__Profile {
+    margin-right: 10px;
+	width: 48px;
+	height: 48px;
+	line-height: 46px;
+	font-size: 16px;
+	border-radius: 48px;
+}
+
+#others {
+    float: left;
+}
+
+#me {
+    float: right;
+}

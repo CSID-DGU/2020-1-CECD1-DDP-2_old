@@ -1,0 +1,339 @@
+<div class="wrapmsgr_chat wrapmsgr_state_normalize wrapmsgr_viewmode_full" ng-class="[chatroomState, viewModeClass, {false: 'disabled'}[loggedIn]]" ng-show="current.convo" style="">
+		
+    <div class="wrapmsgr_header" ng-hide="viewMode == 'chat'">
+        <h1 class="wrapmsgr_title" draggable="{target: '.wrapmsgr_chat', position: 'fixed'}" style="cursor: move;">
+            <!-- ngIf: current.convo.convoType == 1 && current.convo.roomType == 2 -->
+            <!-- ngIf: current.convo.convoType == 1 && current.convo.roomType == 3 --><span ng-if="current.convo.convoType == 1 &amp;&amp; current.convo.roomType == 3" class="ng-scope" style="">Document Chat Room - </span><!-- end ngIf: current.convo.convoType == 1 && current.convo.roomType == 3 -->
+            <!-- ngIf: current.convo.convoType == 2 && current.convo.roomType == 0 -->
+            <span ng-attr-title="{{current.convo.name}}" class="ng-binding" title="Object Storage의 이해와 활용 V1.pdf">Object Storage의 이해와 활용 V1.pdf</span>
+        </h1>
+    
+        <div class="wrapmsgr-header-icon-wrap">
+             <a href=""><!-- ngIf: !isMaximize --><i class="icon_window_max ng-scope" title="maximize" ng-click="maximize()" ng-if="!isMaximize"></i><!-- end ngIf: !isMaximize --></a>
+             <a href=""><!-- ngIf: isMaximize --></a>
+             <a href=""><i class="icon_times" title="Close" ng-click="current.convo = undefined"></i></a>
+         </div>
+    </div>
+    
+    <div class="wrapmsgr_content  wrapmsgr_viewmode_full doc-chatroom" ng-class="[{1: 'doc-chatroom', 2: 'wrapmsgr_chatbot'}[current.convo.convoType], viewModeClass]" style="">
+        <div class="wrapmsgr_header" ng-show="current.convo.convoType == 1" style="">
+            <!-- ngIf: current.convo.roomType == 2 -->
+            <!-- ngIf: current.convo.roomType == 3 --><div class="wrapmsgr_header_title ng-scope" ng-if="current.convo.roomType == 3" style="">
+                <document-icon name="current.convo.name" class="ng-isolate-scope"><i ng-class="docIcon" class="icon_pdf">			<span class="path1"></span>			<span class="path2"></span>			<span class="path3"></span>			<span class="path4"></span>			<span class="path5"></span>			<span class="path6"></span>			<span class="path7"></span>			<span class="path8"></span>			<span class="path9"></span>			<span class="path10"></span>			<span class="path11"></span>			</i></document-icon>
+                <div>
+                    <div class="chatroom-name ng-binding" ng-attr-title="{{current.docInfo.detail.contentName}}" title="Object Storage의 이해와 활용 V1.pdf">Object Storage의 이해와 활용 V1.pdf</div>
+                    <div class="chatroom-size ng-binding">10.2MB</div>
+                </div>
+            </div><!-- end ngIf: current.convo.roomType == 3 -->
+            <!-- ng-if="viewMode = 'chat'" -->
+            <div class="chatroom-user">
+                <i class="icon_users"></i>
+                <span class="chatroom-user-cnt ng-binding" ng-click="current.convo.convoType == 1 &amp;&amp; current.convo.roomType != 2 &amp;&amp; showInviteDocRoom()" ng-mouseover="userListPopup1 = true" ng-mouseleave="userListPopup1 = false">5 Users</span>
+            </div>
+            <div class="chatroom-user">
+                <div class="chatroom-user-list ng-hide" ng-show="userListPopup1 || userListPopup2" ng-mouseover="userListPopup2 = true" ng-mouseleave="userListPopup2 = false">
+                    <ul>
+                        <!-- ngRepeat: member in current.members | orderBy:'userName' --><li ng-repeat="member in current.members | orderBy:'userName'" class="ng-binding ng-scope" style="">Administrator</li><!-- end ngRepeat: member in current.members | orderBy:'userName' --><li ng-repeat="member in current.members | orderBy:'userName'" class="ng-binding ng-scope">DDP</li><!-- end ngRepeat: member in current.members | orderBy:'userName' --><li ng-repeat="member in current.members | orderBy:'userName'" class="ng-binding ng-scope">DDP2</li><!-- end ngRepeat: member in current.members | orderBy:'userName' --><li ng-repeat="member in current.members | orderBy:'userName'" class="ng-binding ng-scope">DDP3</li><!-- end ngRepeat: member in current.members | orderBy:'userName' --><li ng-repeat="member in current.members | orderBy:'userName'" class="ng-binding ng-scope">Unknown user</li><!-- end ngRepeat: member in current.members | orderBy:'userName' -->
+                    </ul>
+                </div>
+            </div>
+            <div class="wrapmsgr_right">
+                <a href="" ng-show="current.docInfo.detail.status === 'N' &amp;&amp; webOfficeEnabled &amp;&amp; current.docInfo &amp;&amp; isPreviewExt(current.docInfo.detail) &amp;&amp; viewMode != 'chat'" ng-click="previewDocument()" class="" style=""><i class="icon_eye" title="Preview"></i></a>
+                <a href="" ng-show="current.docInfo.detail.status === 'N' &amp;&amp; current.docInfo &amp;&amp; viewMode != 'chat'" ng-click="downloadDocument()" class=""><i class="icon_download" title="Download"></i></a>
+                <a href="" ng-show="notificationEnabled" ng-click="toggleNotification()"><i ng-class="{0:'icon_bell_off', 1:'icon_bell'}[current.convo.notificationType]" ng-attr-title="{{ current.convo.notificationType > 0 ? 'Turn off' : 'Turn on' }}" title="Turn off" class="icon_bell" style=""></i></a>
+                <div ng-show="current.convo.roomType != 2" dropdown="" class="ng-isolate-scope">
+                    <a href=""><i class="icon_ellipsis_h" title="More"></i></a>
+                    <div class="wrapmsgr_dropdown_menu" dropdown-menu="" style="display: none;">
+                        <!-- ngIf: current.convo.convoType == 1 && current.convo.roomType != 2 --><div ng-if="current.convo.convoType == 1 &amp;&amp; current.convo.roomType != 2" ng-click="showInviteDocRoom()" title="Invite" class="ng-scope" style="">
+                            <i class="icon_plus"></i>Invite
+                        </div><!-- end ngIf: current.convo.convoType == 1 && current.convo.roomType != 2 -->
+                        <!-- ngIf: current.convo.convoType == 1 && current.convo.roomType != 2 --><div ng-if="current.convo.convoType == 1 &amp;&amp; current.convo.roomType != 2" ng-click="leaveRoom()" title="Leave" class="ng-scope ng-enter-prepare">
+                            <i class="icon_log_out"></i>Leave
+                        </div><!-- end ngIf: current.convo.convoType == 1 && current.convo.roomType != 2 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="wrapmsgr_aside" ng-hide="viewMode == 'chat' || current.convo.convoType == 2">
+            <div class="search_div">
+                <input type="text" placeholder="Enter a user name or ID." ng-model="search.user" ng-disabled="!loggedIn" class="ng-pristine ng-untouched ng-valid ng-empty">						
+                <i class="icon_search"></i>
+            </div>
+            <ul>
+                <!-- ngRepeat: member in current.members | memberFilter:search.user:users | orderBy:'userName' --><li ng-repeat="member in current.members | memberFilter:search.user:users | orderBy:'userName'" ng-class="{'has-grn-dot': false, 'has-red-dot': false}" wrapmsgr-user-profile="users[member.userId]" class="ng-scope ng-isolate-scope" style="">
+                    <span class="user-photo ng-binding ng-isolate-scope no-photo cyan" user="users[member.userId]">Ad</span>
+                    <div class="ng-binding">Administrator (admin) <!-- ngIf: false && current.convo.owner == member.userId --></div>
+                    <div class="sub-info ng-binding">FASOO</div>
+                </li><!-- end ngRepeat: member in current.members | memberFilter:search.user:users | orderBy:'userName' --><li ng-repeat="member in current.members | memberFilter:search.user:users | orderBy:'userName'" ng-class="{'has-grn-dot': false, 'has-red-dot': false}" wrapmsgr-user-profile="users[member.userId]" class="ng-scope ng-isolate-scope">
+                    <span class="user-photo ng-binding ng-isolate-scope no-photo orange" user="users[member.userId]">DD</span>
+                    <div class="ng-binding">DDP (ddp) <!-- ngIf: false && current.convo.owner == member.userId --></div>
+                    <div class="sub-info ng-binding">ddp_dept</div>
+                </li><!-- end ngRepeat: member in current.members | memberFilter:search.user:users | orderBy:'userName' --><li ng-repeat="member in current.members | memberFilter:search.user:users | orderBy:'userName'" ng-class="{'has-grn-dot': false, 'has-red-dot': false}" wrapmsgr-user-profile="users[member.userId]" class="ng-scope ng-isolate-scope">
+                    <span class="user-photo ng-binding ng-isolate-scope no-photo purple" user="users[member.userId]">DD</span>
+                    <div class="ng-binding">DDP2 (ddp2) <!-- ngIf: false && current.convo.owner == member.userId --></div>
+                    <div class="sub-info ng-binding">ddp_dept</div>
+                </li><!-- end ngRepeat: member in current.members | memberFilter:search.user:users | orderBy:'userName' --><li ng-repeat="member in current.members | memberFilter:search.user:users | orderBy:'userName'" ng-class="{'has-grn-dot': false, 'has-red-dot': false}" wrapmsgr-user-profile="users[member.userId]" class="ng-scope ng-isolate-scope" style="">
+                    <span class="user-photo ng-binding ng-isolate-scope no-photo cyan" user="users[member.userId]">DD</span>
+                    <div class="ng-binding">DDP3 (ddp3) <!-- ngIf: false && current.convo.owner == member.userId --></div>
+                    <div class="sub-info ng-binding">ddp_dept</div>
+                </li><!-- end ngRepeat: member in current.members | memberFilter:search.user:users | orderBy:'userName' -->
+            </ul>
+        </div>
+        
+        <div class="wrapmsgr_aside ng-hide" ng-hide="viewMode == 'chat' || current.convo.convoType == 1 || current.convo.otoType != 1">
+            <div class="wrapmsgr_chatbot-info_div">
+                <p class="ng-binding"></p>
+                <a href=""><i ng-class="{0:'icon_bell_off', 1:'icon_bell'}[current.convo.notificationType]" ng-show="notificationEnabled" ng-click="toggleNotification()" ng-attr-title="{{ current.convo.notificationType > 0 ? 'Turn off' : 'Turn on' }}" title="Turn off" class="icon_bell" style=""></i></a>
+            </div>
+            <ul class="question-list">
+                <!-- ngRepeat: intentGroup in current.botIntentGroup -->
+            </ul>
+        </div>
+        
+        <div class="wrapmsgr_article wrapmsgr_viewmode_full" ng-class="viewModeClass">
+            <div class="wrapmsgr_content" ng-class="{'no-header': current.convo.convoType == 2}">
+                <div class="wrapmsgr_messages" in-view-container="">
+                    <ul>
+                        <!-- ngRepeat: message in current.messages --><li id="message_5" ng-repeat="message in current.messages" ng-class="{'li-right': user.id == message.sendUserId}" class="ng-scope" style="">
+                            <!-- ngIf: diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1 --><div class="wrapmsgr_date ng-scope" ng-if="diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1">
+                                <span class="ng-binding">5월 8일 (금요일)</span>
+                            </div><!-- end ngIf: diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1 -->
+                            <!-- ngIf: message.messageType < MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: message.messageType >= MESSAGE_TYPE_SYSTEM --><div class="wrapmsgr_msg_system ng-scope" ng-class="{revision: message.messageType == MESSAGE_TYPE_SYSTEM_REVISION}" ng-if="message.messageType >= MESSAGE_TYPE_SYSTEM">
+                                <span class="ng-binding">Administrator joined room.<a href="" class="wrapmsgr_right"><!-- ngIf: message.messageType == MESSAGE_TYPE_SYSTEM_REVISION --></a></span>
+                            </div><!-- end ngIf: message.messageType >= MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: current.brokenMessage === message -->
+                        </li><!-- end ngRepeat: message in current.messages --><li id="message_6" ng-repeat="message in current.messages" ng-class="{'li-right': user.id == message.sendUserId}" class="ng-scope">
+                            <!-- ngIf: diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1 -->
+                            <!-- ngIf: message.messageType < MESSAGE_TYPE_SYSTEM --><div class="wrapmsgr_msg ng-scope" ng-if="message.messageType < MESSAGE_TYPE_SYSTEM" ng-class="{'continuous': isContinuous(current.messages[$index-1], message)}">
+                                <div class="wrapmsgr_msg_user ng-isolate-scope" ng-attr-title="{{users[message.sendUserId].userName}}" wrapmsgr-user-profile="users[message.sendUserId]" user-profile-disabled="message.sendUserId.substr(0, 5) == '@BOT@'" title="Administrator">
+                                    <span class="user-photo ng-binding ng-isolate-scope no-photo cyan group-remove" user="users[message.sendUserId]" style="">Ad</span>
+                                </div>
+                                <div class="wrapmsgr_msg_userid ng-binding">Administrator</div>
+                                <div class="wrapmsgr_msg_bubble-wrap">
+                                    <div class="wrapmsgr_msg_bubble">
+                                        <!-- ngIf: message.title -->
+                                        <div class="wrapmsgr_msg_body ng-binding" ng-bind-html="message.body | linky:'_blank'">안녕하세요.</div>
+                                        <!-- ngRepeat: attachment in message.attachments -->
+                                    </div>
+                                    <div class="wrapmsgr_msg_time ng-hide" ng-hide="isContinuous(message, current.messages[$index+1])">
+                                        <span class="ng-binding">오후 7:16</span>
+                                    </div>
+                                </div>
+                            </div><!-- end ngIf: message.messageType < MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: message.messageType >= MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: current.brokenMessage === message -->
+                        </li><!-- end ngRepeat: message in current.messages --><li id="message_7" ng-repeat="message in current.messages" ng-class="{'li-right': user.id == message.sendUserId}" class="ng-scope">
+                            <!-- ngIf: diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1 -->
+                            <!-- ngIf: message.messageType < MESSAGE_TYPE_SYSTEM --><div class="wrapmsgr_msg ng-scope continuous" ng-if="message.messageType < MESSAGE_TYPE_SYSTEM" ng-class="{'continuous': isContinuous(current.messages[$index-1], message)}">
+                                <div class="wrapmsgr_msg_user ng-isolate-scope" ng-attr-title="{{users[message.sendUserId].userName}}" wrapmsgr-user-profile="users[message.sendUserId]" user-profile-disabled="message.sendUserId.substr(0, 5) == '@BOT@'" title="Administrator">
+                                    <span class="user-photo ng-binding ng-isolate-scope no-photo cyan group-remove" user="users[message.sendUserId]" style="">Ad</span>
+                                </div>
+                                <div class="wrapmsgr_msg_userid ng-binding">Administrator</div>
+                                <div class="wrapmsgr_msg_bubble-wrap">
+                                    <div class="wrapmsgr_msg_bubble">
+                                        <!-- ngIf: message.title -->
+                                        <div class="wrapmsgr_msg_body ng-binding" ng-bind-html="message.body | linky:'_blank'">어라?</div>
+                                        <!-- ngRepeat: attachment in message.attachments -->
+                                    </div>
+                                    <div class="wrapmsgr_msg_time" ng-hide="isContinuous(message, current.messages[$index+1])">
+                                        <span class="ng-binding">오후 7:16</span>
+                                    </div>
+                                </div>
+                            </div><!-- end ngIf: message.messageType < MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: message.messageType >= MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: current.brokenMessage === message -->
+                        </li><!-- end ngRepeat: message in current.messages --><li id="message_8" ng-repeat="message in current.messages" ng-class="{'li-right': user.id == message.sendUserId}" class="ng-scope">
+                            <!-- ngIf: diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1 -->
+                            <!-- ngIf: message.messageType < MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: message.messageType >= MESSAGE_TYPE_SYSTEM --><div class="wrapmsgr_msg_system ng-scope" ng-class="{revision: message.messageType == MESSAGE_TYPE_SYSTEM_REVISION}" ng-if="message.messageType >= MESSAGE_TYPE_SYSTEM">
+                                <span class="ng-binding">DDP joined room by invitation from Administrator.<a href="" class="wrapmsgr_right"><!-- ngIf: message.messageType == MESSAGE_TYPE_SYSTEM_REVISION --></a></span>
+                            </div><!-- end ngIf: message.messageType >= MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: current.brokenMessage === message -->
+                        </li><!-- end ngRepeat: message in current.messages --><li id="message_29" ng-repeat="message in current.messages" ng-class="{'li-right': user.id == message.sendUserId}" class="ng-scope">
+                            <!-- ngIf: diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1 --><div class="wrapmsgr_date ng-scope" ng-if="diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1">
+                                <span class="ng-binding">5월 9일 (토요일)</span>
+                            </div><!-- end ngIf: diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1 -->
+                            <!-- ngIf: message.messageType < MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: message.messageType >= MESSAGE_TYPE_SYSTEM --><div class="wrapmsgr_msg_system ng-scope" ng-class="{revision: message.messageType == MESSAGE_TYPE_SYSTEM_REVISION}" ng-if="message.messageType >= MESSAGE_TYPE_SYSTEM">
+                                <span class="ng-binding">DDP2 joined room.<a href="" class="wrapmsgr_right"><!-- ngIf: message.messageType == MESSAGE_TYPE_SYSTEM_REVISION --></a></span>
+                            </div><!-- end ngIf: message.messageType >= MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: current.brokenMessage === message -->
+                        </li><!-- end ngRepeat: message in current.messages --><li id="message_30" ng-repeat="message in current.messages" ng-class="{'li-right': user.id == message.sendUserId}" class="ng-scope">
+                            <!-- ngIf: diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1 --><div class="wrapmsgr_date ng-scope" ng-if="diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1">
+                                <span class="ng-binding">5월 10일 (일요일)</span>
+                            </div><!-- end ngIf: diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1 -->
+                            <!-- ngIf: message.messageType < MESSAGE_TYPE_SYSTEM --><div class="wrapmsgr_msg ng-scope" ng-if="message.messageType < MESSAGE_TYPE_SYSTEM" ng-class="{'continuous': isContinuous(current.messages[$index-1], message)}">
+                                <div class="wrapmsgr_msg_user ng-isolate-scope" ng-attr-title="{{users[message.sendUserId].userName}}" wrapmsgr-user-profile="users[message.sendUserId]" user-profile-disabled="message.sendUserId.substr(0, 5) == '@BOT@'" title="DDP2">
+                                    <span class="user-photo ng-binding ng-isolate-scope no-photo purple group-remove" user="users[message.sendUserId]" style="">DD</span>
+                                </div>
+                                <div class="wrapmsgr_msg_userid ng-binding">DDP2</div>
+                                <div class="wrapmsgr_msg_bubble-wrap">
+                                    <div class="wrapmsgr_msg_bubble">
+                                        <!-- ngIf: message.title -->
+                                        <div class="wrapmsgr_msg_body ng-binding" ng-bind-html="message.body | linky:'_blank'">안녕하세요!</div>
+                                        <!-- ngRepeat: attachment in message.attachments -->
+                                    </div>
+                                    <div class="wrapmsgr_msg_time" ng-hide="isContinuous(message, current.messages[$index+1])">
+                                        <span class="ng-binding">오후 6:17</span>
+                                    </div>
+                                </div>
+                            </div><!-- end ngIf: message.messageType < MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: message.messageType >= MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: current.brokenMessage === message -->
+                        </li><!-- end ngRepeat: message in current.messages --><li id="message_52" ng-repeat="message in current.messages" ng-class="{'li-right': user.id == message.sendUserId}" class="ng-scope">
+                            <!-- ngIf: diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1 --><div class="wrapmsgr_date ng-scope" ng-if="diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1">
+                                <span class="ng-binding">5월 15일 (금요일)</span>
+                            </div><!-- end ngIf: diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1 -->
+                            <!-- ngIf: message.messageType < MESSAGE_TYPE_SYSTEM --><div class="wrapmsgr_msg ng-scope" ng-if="message.messageType < MESSAGE_TYPE_SYSTEM" ng-class="{'continuous': isContinuous(current.messages[$index-1], message)}">
+                                <div class="wrapmsgr_msg_user ng-isolate-scope" ng-attr-title="{{users[message.sendUserId].userName}}" wrapmsgr-user-profile="users[message.sendUserId]" user-profile-disabled="message.sendUserId.substr(0, 5) == '@BOT@'" title="Administrator">
+                                    <span class="user-photo ng-binding ng-isolate-scope no-photo cyan group-remove" user="users[message.sendUserId]" style="">Ad</span>
+                                </div>
+                                <div class="wrapmsgr_msg_userid ng-binding">Administrator</div>
+                                <div class="wrapmsgr_msg_bubble-wrap">
+                                    <div class="wrapmsgr_msg_bubble">
+                                        <!-- ngIf: message.title -->
+                                        <div class="wrapmsgr_msg_body ng-binding" ng-bind-html="message.body | linky:'_blank'">오브젝트 스토리지 PPT 자료 입니다.</div>
+                                        <!-- ngRepeat: attachment in message.attachments -->
+                                    </div>
+                                    <div class="wrapmsgr_msg_time ng-hide" ng-hide="isContinuous(message, current.messages[$index+1])">
+                                        <span class="ng-binding">오후 2:10</span>
+                                    </div>
+                                </div>
+                            </div><!-- end ngIf: message.messageType < MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: message.messageType >= MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: current.brokenMessage === message -->
+                        </li><!-- end ngRepeat: message in current.messages --><li id="message_53" ng-repeat="message in current.messages" ng-class="{'li-right': user.id == message.sendUserId}" class="ng-scope">
+                            <!-- ngIf: diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1 -->
+                            <!-- ngIf: message.messageType < MESSAGE_TYPE_SYSTEM --><div class="wrapmsgr_msg ng-scope continuous" ng-if="message.messageType < MESSAGE_TYPE_SYSTEM" ng-class="{'continuous': isContinuous(current.messages[$index-1], message)}">
+                                <div class="wrapmsgr_msg_user ng-isolate-scope" ng-attr-title="{{users[message.sendUserId].userName}}" wrapmsgr-user-profile="users[message.sendUserId]" user-profile-disabled="message.sendUserId.substr(0, 5) == '@BOT@'" title="Administrator">
+                                    <span class="user-photo ng-binding ng-isolate-scope no-photo cyan group-remove" user="users[message.sendUserId]" style="">Ad</span>
+                                </div>
+                                <div class="wrapmsgr_msg_userid ng-binding">Administrator</div>
+                                <div class="wrapmsgr_msg_bubble-wrap">
+                                    <div class="wrapmsgr_msg_bubble">
+                                        <!-- ngIf: message.title -->
+                                        <div class="wrapmsgr_msg_body ng-binding" ng-bind-html="message.body | linky:'_blank'">과련된 부분은 추가 확인 해 보시길...</div>
+                                        <!-- ngRepeat: attachment in message.attachments -->
+                                    </div>
+                                    <div class="wrapmsgr_msg_time" ng-hide="isContinuous(message, current.messages[$index+1])">
+                                        <span class="ng-binding">오후 2:10</span>
+                                    </div>
+                                </div>
+                            </div><!-- end ngIf: message.messageType < MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: message.messageType >= MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: current.brokenMessage === message -->
+                        </li><!-- end ngRepeat: message in current.messages --><li id="message_62" ng-repeat="message in current.messages" ng-class="{'li-right': user.id == message.sendUserId}" class="ng-scope">
+                            <!-- ngIf: diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1 --><div class="wrapmsgr_date ng-scope" ng-if="diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1">
+                                <span class="ng-binding">5월 23일 (토요일)</span>
+                            </div><!-- end ngIf: diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1 -->
+                            <!-- ngIf: message.messageType < MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: message.messageType >= MESSAGE_TYPE_SYSTEM --><div class="wrapmsgr_msg_system ng-scope" ng-class="{revision: message.messageType == MESSAGE_TYPE_SYSTEM_REVISION}" ng-if="message.messageType >= MESSAGE_TYPE_SYSTEM">
+                                <span class="ng-binding">DDP3 joined room.<a href="" class="wrapmsgr_right"><!-- ngIf: message.messageType == MESSAGE_TYPE_SYSTEM_REVISION --></a></span>
+                            </div><!-- end ngIf: message.messageType >= MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: current.brokenMessage === message -->
+                        </li><!-- end ngRepeat: message in current.messages --><li id="message_63" ng-repeat="message in current.messages" ng-class="{'li-right': user.id == message.sendUserId}" class="ng-scope">
+                            <!-- ngIf: diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1 --><div class="wrapmsgr_date ng-scope" ng-if="diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1">
+                                <span class="ng-binding">5월 28일 (목요일)</span>
+                            </div><!-- end ngIf: diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1 -->
+                            <!-- ngIf: message.messageType < MESSAGE_TYPE_SYSTEM --><div class="wrapmsgr_msg ng-scope" ng-if="message.messageType < MESSAGE_TYPE_SYSTEM" ng-class="{'continuous': isContinuous(current.messages[$index-1], message)}">
+                                <div class="wrapmsgr_msg_user ng-isolate-scope" ng-attr-title="{{users[message.sendUserId].userName}}" wrapmsgr-user-profile="users[message.sendUserId]" user-profile-disabled="message.sendUserId.substr(0, 5) == '@BOT@'" title="DDP">
+                                    <span class="user-photo ng-binding ng-isolate-scope no-photo orange group-remove" user="users[message.sendUserId]" style="">DD</span>
+                                </div>
+                                <div class="wrapmsgr_msg_userid ng-binding">DDP</div>
+                                <div class="wrapmsgr_msg_bubble-wrap">
+                                    <div class="wrapmsgr_msg_bubble">
+                                        <!-- ngIf: message.title -->
+                                        <div class="wrapmsgr_msg_body ng-binding" ng-bind-html="message.body | linky:'_blank'">테스트</div>
+                                        <!-- ngRepeat: attachment in message.attachments -->
+                                    </div>
+                                    <div class="wrapmsgr_msg_time" ng-hide="isContinuous(message, current.messages[$index+1])">
+                                        <span class="ng-binding">오후 7:09</span>
+                                    </div>
+                                </div>
+                            </div><!-- end ngIf: message.messageType < MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: message.messageType >= MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: current.brokenMessage === message -->
+                        </li><!-- end ngRepeat: message in current.messages --><li id="message_64" ng-repeat="message in current.messages" ng-class="{'li-right': user.id == message.sendUserId}" class="ng-scope">
+                            <!-- ngIf: diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1 --><div class="wrapmsgr_date ng-scope" ng-if="diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1">
+                                <span class="ng-binding">5월 29일 (금요일)</span>
+                            </div><!-- end ngIf: diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1 -->
+                            <!-- ngIf: message.messageType < MESSAGE_TYPE_SYSTEM --><div class="wrapmsgr_msg ng-scope" ng-if="message.messageType < MESSAGE_TYPE_SYSTEM" ng-class="{'continuous': isContinuous(current.messages[$index-1], message)}">
+                                <div class="wrapmsgr_msg_user ng-isolate-scope" ng-attr-title="{{users[message.sendUserId].userName}}" wrapmsgr-user-profile="users[message.sendUserId]" user-profile-disabled="message.sendUserId.substr(0, 5) == '@BOT@'" title="DDP">
+                                    <span class="user-photo ng-binding ng-isolate-scope no-photo orange group-remove" user="users[message.sendUserId]" style="">DD</span>
+                                </div>
+                                <div class="wrapmsgr_msg_userid ng-binding">DDP</div>
+                                <div class="wrapmsgr_msg_bubble-wrap">
+                                    <div class="wrapmsgr_msg_bubble">
+                                        <!-- ngIf: message.title -->
+                                        <div class="wrapmsgr_msg_body ng-binding" ng-bind-html="message.body | linky:'_blank'">안녕하세요</div>
+                                        <!-- ngRepeat: attachment in message.attachments -->
+                                    </div>
+                                    <div class="wrapmsgr_msg_time" ng-hide="isContinuous(message, current.messages[$index+1])">
+                                        <span class="ng-binding">오후 1:38</span>
+                                    </div>
+                                </div>
+                            </div><!-- end ngIf: message.messageType < MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: message.messageType >= MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: current.brokenMessage === message -->
+                        </li><!-- end ngRepeat: message in current.messages --><li id="message_65" ng-repeat="message in current.messages" ng-class="{'li-right': user.id == message.sendUserId}" class="ng-scope li-right" style="">
+                            <!-- ngIf: diffDays(current.messages[$index-1].createdAt, message.createdAt) >= 1 -->
+                            <!-- ngIf: message.messageType < MESSAGE_TYPE_SYSTEM --><div class="wrapmsgr_msg ng-scope" ng-if="message.messageType < MESSAGE_TYPE_SYSTEM" ng-class="{'continuous': isContinuous(current.messages[$index-1], message)}">
+                                <div class="wrapmsgr_msg_user ng-isolate-scope" ng-attr-title="{{users[message.sendUserId].userName}}" wrapmsgr-user-profile="users[message.sendUserId]" user-profile-disabled="message.sendUserId.substr(0, 5) == '@BOT@'" title="DDP3">
+                                    <span class="user-photo ng-binding ng-isolate-scope no-photo cyan" user="users[message.sendUserId]">DD</span>
+                                </div>
+                                <div class="wrapmsgr_msg_userid ng-binding">DDP3</div>
+                                <div class="wrapmsgr_msg_bubble-wrap">
+                                    <div class="wrapmsgr_msg_bubble">
+                                        <!-- ngIf: message.title -->
+                                        <div class="wrapmsgr_msg_body ng-binding" ng-bind-html="message.body | linky:'_blank'">ㅇ</div>
+                                        <!-- ngRepeat: attachment in message.attachments -->
+                                    </div>
+                                    <div class="wrapmsgr_msg_time" ng-hide="isContinuous(message, current.messages[$index+1])">
+                                        <span class="ng-binding">오후 1:41</span>
+                                    </div>
+                                </div>
+                            </div><!-- end ngIf: message.messageType < MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: message.messageType >= MESSAGE_TYPE_SYSTEM -->
+                            <!-- ngIf: current.brokenMessage === message -->
+                        </li><!-- end ngRepeat: message in current.messages -->
+                    </ul>
+                    <div class="wrapmsgr_latest_message ng-hide" ng-show="current.latestMessage" ng-click="messagesScrollToLatestMessage()">
+                        <i class="icon_arrow_down"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapmsgr_footer">
+                <form ng-submit="chat()" class="ng-pristine ng-valid ng-valid-maxlength">
+                    <span class="wrapmsgr_full_width_text_span">
+                        <textarea id="wrapmsgr_message_input" class="wrapmsgr_full_width_text ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" autocomplete="off" maxlength="500" placeholder="Enter a message." ng-model="input.message" ng-keydown="submitOnEnter($event)" ng-disabled="!loggedIn"></textarea>
+                    </span>
+                    <button type="submit" class="wrapmsgr_submit" value="Send" title="Send" ng-disabled="!loggedIn">
+                        <i class="icon_paper_plane"></i>
+                    </button>
+                </form>
+                
+            </div>
+        </div>
+        
+    </div>
+
+</div>
+
+
+
+<div class="wrapmsgr_header" ng-hide="viewMode == 'chat'">
+    <h1 class="wrapmsgr_title" draggable="{target: '.wrapmsgr_chat', position: 'fixed'}" style="cursor: move;">
+        <!-- ngIf: current.convo.convoType == 1 && current.convo.roomType == 2 -->
+        <!-- ngIf: current.convo.convoType == 1 && current.convo.roomType == 3 --><span ng-if="current.convo.convoType == 1 &amp;&amp; current.convo.roomType == 3" class="ng-scope" style="">Document Chat Room - </span><!-- end ngIf: current.convo.convoType == 1 && current.convo.roomType == 3 -->
+        <!-- ngIf: current.convo.convoType == 2 && current.convo.roomType == 0 -->
+        <span ng-attr-title="{{current.convo.name}}" class="ng-binding" title="Object Storage의 이해와 활용 V1.pdf">Object Storage의 이해와 활용 V1.pdf</span>
+    </h1>
+
+    <div class="wrapmsgr-header-icon-wrap">
+         <a href=""><!-- ngIf: !isMaximize --><i class="icon_window_max ng-scope" title="maximize" ng-click="maximize()" ng-if="!isMaximize"></i><!-- end ngIf: !isMaximize --></a>
+         <a href=""><!-- ngIf: isMaximize --></a>
+         <a href=""><i class="icon_times" title="Close" ng-click="current.convo = undefined"></i></a>
+     </div>
+</div>

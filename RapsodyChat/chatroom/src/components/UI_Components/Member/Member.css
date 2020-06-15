@@ -1,0 +1,24 @@
+.Member__Profile {
+    margin-right: 10px;
+	width: 48px;
+	height: 48px;
+	line-height: 46px;
+	font-size: 16px;
+    border-radius: 48px;
+    float: left;
+}
+
+.Member__Name {
+    font-size: 16px;
+	font-weight: 500;
+    box-sizing: border-box;
+    /* padding-left: 25px; */
+	padding-right: 50px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.text {
+    text-align: left;
+}
