@@ -2,11 +2,10 @@ import React, { Component, Fragment } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import { WrapmsgrHeader3 } from './components';
-import WrapmsgrContent from './components/UI_Components/WrapmsgrContent';
-import './resources/css/base.css';
+import { WrapmsgrHeader3 } from '../..';
+import WrapmsgrContent from '../WrapmsgrContent';
 
-class App extends Component {
+class ChatRoomApp extends Component {
   render() {
     return (
       <Fragment>
@@ -22,4 +21,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default ChatRoomApp;
