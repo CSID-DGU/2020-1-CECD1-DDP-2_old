@@ -286,7 +286,7 @@ function Group(){
                                 <span className="user-photo ng-binding ng-isolate-scope no-photo purple" user="{userName: node.columnText, userId: node.value, type: node.type}">DD</span>
                                 <span className="wrapmsgr_member ng-binding">DDP2</span>
                             </div>
-                            <span className="wrapmsgr_master ng-hide" ng-show="node.value == docInfo.detail.masterUserId">Owner</span>
+                            <span className="wrapmsgr_master ng-hide" ng-show="node.value == docInfo.detail.masterUserId"></span>
                             <ol ui-tree-nodes="" ng-model="node.subTree" ng-className="{expanded: !collapsed}" className="ng-pristine ng-untouched ng-valid ng-scope angular-ui-tree-nodes ng-empty">
                             </ol>
                         </div>
@@ -303,7 +303,7 @@ function Group(){
                                 <span className="user-photo ng-binding ng-isolate-scope no-photo blue" user="{userName: node.columnText, userId: node.value, type: node.type}">페이</span>
                                 <span className="wrapmsgr_member ng-binding">페이레터_관리자</span>
                             </div>
-                            <span className="wrapmsgr_master ng-hide" ng-show="node.value == docInfo.detail.masterUserId">Owner</span>
+                            <span className="wrapmsgr_master ng-hide" ng-show="node.value == docInfo.detail.masterUserId"></span>
                             <ol ui-tree-nodes="" ng-model="node.subTree" ng-className="{expanded: !collapsed}" className="ng-pristine ng-untouched ng-valid ng-scope angular-ui-tree-nodes ng-empty">
                             </ol>
                         </div>
