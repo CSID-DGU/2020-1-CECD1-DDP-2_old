@@ -1,0 +1,18 @@
+.demoImg{
+    height: 100px;
+    width: 100px;
+}
+
+.deomLi{
+   
+    list-style-type: none;
+    border: 0;
+}
+
+.demoUl{
+   
+    list-style-type: none;
+    float: left;
+    border: 0;
+}
+
