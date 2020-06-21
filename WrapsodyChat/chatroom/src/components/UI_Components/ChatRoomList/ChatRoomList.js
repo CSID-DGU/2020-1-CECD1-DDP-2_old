@@ -51,9 +51,7 @@ class List extends Component{
 							</div>
 							<div class="wrapmsgr_right">
 								<span class="chatroom-date ng-binding">2020-05-17</span>
-								<span class="wrapmsgr_unread_outer wrapmsgr_right ng-hide" ng-show="room.unread > 0">
-									<span class="wrapmsgr_unread ng-binding">0</span>
-								</span>
+								
 							</div>
 						</li>
 						    <li ng-repeat="room in convos | filter:{convoType: 1} | filter:{name: search.convo} | orderBy:['roomType', '!latestMessageAt', '-latestMessageAt']" ng-click="showOrReplaceConvo(room)" class="ng-scope">
@@ -68,7 +66,7 @@ class List extends Component{
 							<div class="wrapmsgr_right">
 								<span class="chatroom-date ng-binding">2020-05-09</span>
 								<span class="wrapmsgr_unread_outer wrapmsgr_right ng-hide" ng-show="room.unread > 0">
-									<span class="wrapmsgr_unread wrapmsgr_right ng-binding">0</span>
+									<span class="wrapmsgr_unread wrapmsgr_right ng-binding">3</span>
 								</span>
 							</div>
 						</li><li ng-repeat="room in convos | filter:{convoType: 1} | filter:{name: search.convo} | orderBy:['roomType', '!latestMessageAt', '-latestMessageAt']" ng-click="showOrReplaceConvo(room)" class="ng-scope">
@@ -82,7 +80,7 @@ class List extends Component{
 							<div class="wrapmsgr_right">
 								<span class="chatroom-date ng-binding">2020-05-29</span>
 								<span class="wrapmsgr_unread_outer wrapmsgr_right ng-hide" ng-show="room.unread > 0">
-									<span class="wrapmsgr_unread wrapmsgr_right ng-binding">0</span>
+									<span class="wrapmsgr_unread wrapmsgr_right ng-binding">1</span>
 								</span>
 							</div>
 						</li><li ng-repeat="room in convos | filter:{convoType: 1} | filter:{name: search.convo} | orderBy:['roomType', '!latestMessageAt', '-latestMessageAt']" ng-click="showOrReplaceConvo(room)" class="ng-scope">
@@ -95,9 +93,7 @@ class List extends Component{
 							</div>
 							<div class="wrapmsgr_right">
 								<span class="chatroom-date ng-binding"></span>
-								<span class="wrapmsgr_unread_outer wrapmsgr_right ng-hide" ng-show="room.unread > 0">
-									<span class="wrapmsgr_unread wrapmsgr_right ng-binding">0</span>
-								</span>
+								
 							</div>
 						</li>
 					</ul>
