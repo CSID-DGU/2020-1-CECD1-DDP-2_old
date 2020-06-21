@@ -6,6 +6,7 @@ import {BrowserRouter, Route } from 'react-router-dom';
 import ChatRoomApp from './components/UI_Components/ChatRoom/ChatRoomApp.js';
 import CreeatChatRoomApp from './components/UI_Components/CreateChatRoom/CreateChatRoom.js';
 import CreateChatRoom from './components/UI_Components/CreateChatRoom/CreateChatRoom.js';
+import ChatRoomList from './components/UI_Components/ChatRoomList/ChatRoomList.js';
 
 
 function App(){
@@ -18,7 +19,7 @@ function App(){
                 <li className = "demoLi"><a href = "/chatRoom"><img className = "demoImg" src = { require('./resources/images/chat.png')}/></a></li>
             </ul>
             <Route exact path ="/createChatRoom"><CreateChatRoom></CreateChatRoom></Route>
-            <Route path = "/chatRoomList"></Route>
+            <Route path = "/chatRoomList"><ChatRoomList></ChatRoomList></Route>
             <Route path = "/chatRoom"><ChatRoomApp></ChatRoomApp></Route>
         </div>
     )
