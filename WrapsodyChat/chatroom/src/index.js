@@ -14,9 +14,9 @@ function App(){
         <div>
             <h1>DDP팀 데모 사이트</h1>
             <ul className = "demoUl">
-                <li className = "demoLi"><a href = "/createChatRoom"><img className = "demoImg" src = { require('./resources/images/speak.png')}/></a></li>
-                <li className = "demoLi"><a href = "/chatRoomList"><img className = "demoImg" src = { require('./resources/images/list.png')}/></a></li>
-                <li className = "demoLi"><a href = "/chatRoom"><img className = "demoImg" src = { require('./resources/images/chat.png')}/></a></li>
+                <li className = "demoLi"><a href = "/createChatRoom">채팅방 생성</a></li>
+                <li className = "demoLi"><a href = "/chatRoomList">채팅방 리스트</a></li>
+                <li className = "demoLi"><a href = "/chatRoom">채팅방</a></li>
             </ul>
             <Route exact path ="/createChatRoom"><CreateChatRoom></CreateChatRoom></Route>
             <Route path = "/chatRoomList"><ChatRoomList></ChatRoomList></Route>
